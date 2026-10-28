@@ -1,20 +1,16 @@
 
 import sys
 import requests
-import urllib3
 
 # Replace this with your DownloadHub server's reachable address.
-API_URL = "https://https://downloadhub.home.arpa//add-download"
+API_URL = "https://downloadhub.home.arpa/"
 
 
 def submit_download(url):
     try:
-        # Suppress the InsecureRequestWarning for this temporary test only.
-        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
         response = requests.post(
             API_URL,
-            json={"url": shared_url},
+            json={"url": url},
             timeout=15,
             verify=False  # DEBUG ONLY: skip TLS certificate verification
         )
@@ -37,16 +33,17 @@ def submit_download(url):
 
 def main():
     # URL passed as an argument by Shortcuts/Pythonista.
-    if len(sys.argv) > 1:
-        shared_url = sys.argv[1].strip()
-    else:
-        print("No URL argument received.")
-        return
+    # if len(sys.argv) > 1:
+    #     shared_url = sys.argv[1].strip()
+    # else:
+    #     print("No URL argument received.")
+    #     return
 
-    if not shared_url.startswith(("http://", "https://")):
-        print("Invalid URL:", shared_url)
-        return
+    # if not shared_url.startswith(("http://", "https://")):
+    #     print("Invalid URL:", shared_url)
+    #     return
 
+    shared_url = 'https://xhamster.com/videos/hot-curvy-latina-fucked-at-home-xhrk1aW'
     print("Submitting:", shared_url)
     submit_download(shared_url)
 
