@@ -1,6 +1,7 @@
 
 import sys
 import requests
+import urllib3
 
 # Replace this with your DownloadHub server's reachable address.
 API_URL = "https://https://downloadhub.home.arpa//add-download"
@@ -8,10 +9,14 @@ API_URL = "https://https://downloadhub.home.arpa//add-download"
 
 def submit_download(url):
     try:
+        # Suppress the InsecureRequestWarning for this temporary test only.
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
         response = requests.post(
             API_URL,
-            json={"url": url},
-            timeout=15
+            json={"url": shared_url},
+            timeout=15,
+            verify=False  # DEBUG ONLY: skip TLS certificate verification
         )
 
         response.raise_for_status()
