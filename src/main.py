@@ -30,6 +30,13 @@ def main():
             "OK"
         )
 
-
+import sys
 if __name__ == "__main__":
-    main()
+    # main()
+    print("=== FetchPoint Debug ===")
+    print("Extension:", appex.is_running_extension())
+    print("URL:", appex.get_url())
+    print("Text:", appex.get_text())
+    print("Input:", appex.get_input())
+    print("Arguments:", sys.argv)
+    print("=========================")
