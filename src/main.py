@@ -50,6 +50,10 @@ def main():
     print("Submitting:", shared_url)
     submit_download(shared_url)
 
+def test():
+    shared_url = ""
+    submit_download(shared_url)
 
 if __name__ == "__main__":
-    main()
+    #main()
+    test()
