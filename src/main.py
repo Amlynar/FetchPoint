@@ -2,17 +2,18 @@
 import sys
 import requests
 
+from framework.network.home_lab_session import PYIHomeLabSession
+
 # Replace this with your DownloadHub server's reachable address.
 API_URL = "https://downloadhub.home.arpa/api/v1/add-download"
 
 
 def submit_download(url):
     try:
-        response = requests.post(
+        response = PYIHomeLabSession().post(
             API_URL,
             json={"url": url},
             timeout=15,
-            verify=False  # DEBUG ONLY: skip TLS certificate verification
         )
 
         response.raise_for_status()
@@ -23,6 +24,9 @@ def submit_download(url):
         print("Task ID:", task_id)
         return result
 
+    except RuntimeError as e:
+        # Raised when the home-lab CA certificate hasn't been downloaded yet.
+        print(e)
     except requests.RequestException as e:
         print("Request failed:", e)
     except ValueError:
