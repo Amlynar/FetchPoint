@@ -55,5 +55,5 @@ def test():
     submit_download(shared_url)
 
 if __name__ == "__main__":
-    #main()
-    test()
+    main()
+    #test()
